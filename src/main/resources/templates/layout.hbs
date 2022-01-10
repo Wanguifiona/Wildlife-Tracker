@@ -1,3 +1,5 @@
+{{#block "header"}}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,18 +8,21 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 </head>
 <body>
-<ul class="nav nav-tabs"  >
-    <li role="presentation" class="active"><a href="/">Home</a></li>
-    <li role="presentation"><a href="/hero-form">Heros</a></li>
-    <li role="presentation"><a href="/squad-form">Squads</a></li>
-</ul>
+{{/block }}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ul class="nav nav-tabs"  >
+                <li role="presentation" class="active"><a href="/">Home</a></li>
+                <li role="presentation"><a href="">Record animal sightings</a></li>
+                <li role="presentation"><a href="">View sighting</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <!--begin main template-->
-    <div class="page-header">
-
-        <h1>WELCOME TO MY HERO SQUAD APP.</h1>
-    </div>
-
     <div class="col-md-12" id="out">
         {{#block "content"}}
         {{/block}}
