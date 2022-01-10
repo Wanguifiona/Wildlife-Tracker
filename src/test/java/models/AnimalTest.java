@@ -3,6 +3,8 @@ package models;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class AnimalTest {
@@ -28,7 +30,7 @@ public class AnimalTest {
     @Test
     public void save_insertsObjectIntoDatabase_Person() {
         Animal testAnimal = new Animal("Jaguar");
-//        testAnimal.save();
+        testAnimal.save();
         assertTrue(Animal.all().get(0).equals(testAnimal));
     }
     @Test
@@ -55,6 +57,18 @@ public class AnimalTest {
         secondAnimal.save();
         assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
     }
+
+//    @Test
+//    public void getAnimals_retrievesAllAnimalssFromDatabase_animalsList() {
+//        Animal testAnimal = new Animal("Jaguar");
+//        testAnimal.save();
+//        Sighting firstSighting  = new Sighting("Limuru", testAnimal.getId());
+//        testAnimal.save();
+//        Sighting secondSighting = new Sighting("Nairobi", testAnimal.getId());
+//        testAnimal.save();
+//        Object[] monsters = new Object[] { firstSighting, secondSighting };
+//        assertTrue(testAnimal.getSightings().containsAll(Arrays.asList(monsters)));
+//    }
 
 
 
