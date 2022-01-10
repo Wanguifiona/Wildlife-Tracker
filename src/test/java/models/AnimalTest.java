@@ -28,7 +28,7 @@ public class AnimalTest {
         assertTrue(firstAnimal.equals(anotherAnimal));
     }
     @Test
-    public void save_insertsObjectIntoDatabase_Person() {
+    public void save_insertsObjectIntoDatabase_Animal() {
         Animal testAnimal = new Animal("Jaguar");
         testAnimal.save();
         assertTrue(Animal.all().get(0).equals(testAnimal));
@@ -69,7 +69,17 @@ public class AnimalTest {
 //        Object[] monsters = new Object[] { firstSighting, secondSighting };
 //        assertTrue(testAnimal.getSightings().containsAll(Arrays.asList(monsters)));
 //    }
-
+//    @Test
+//    public void getSighting_retrievesAllSightingFromDatabase_sightingList() {
+//        Animal lucky = new Animal("Lucky");
+//        lucky.save();
+//        Sighting nairobi = new Sighting();
+//        nairobi.save();
+//        Sighting kisumu = new Sighting();
+//        kisumu.save();
+//        Sighting[] sightings = {nairobi, kisumu};
+//        assertTrue(lucky.getSighting().containsAll(Arrays.asList(sighting)));
+//    }
 
 
 }

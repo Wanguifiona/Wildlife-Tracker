@@ -1,4 +1,6 @@
 
+
+
 package models;
 
 import org.sql2o.Connection;
@@ -40,7 +42,7 @@ public class Animal implements DatabaseManagement{
     @Override
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name) VALUES (:name)";
+            String sql = "INSERT INTO animal (name) VALUES (:name)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
                     .executeUpdate()
@@ -48,38 +50,46 @@ public class Animal implements DatabaseManagement{
         }
     }
     public static List<Animal> all() {
-    String sql = "SELECT * FROM animals";
-    try(Connection con = DB.sql2o.open()) {
-        return con.createQuery(sql).executeAndFetch(Animal.class);
+        String sql = "SELECT * FROM animal";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Animal.class);
+        }
     }
-}
     public static Animal find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals where id=:id";
+            String sql = "SELECT * FROM animal where id=:id";
             Animal animal = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Animal.class);
             return animal;
         }
     }
-    public static List<Object> getAnimals() {
-        List<Object> allAnimals = new ArrayList<Object>();
+//    public static List<Object> getAnimals() {
+//        List<Object> allAnimals = new ArrayList<Object>();
+//
+//        try(Connection con = DB.sql2o.open()) {
+//            String sqlFire = "SELECT * FROM animal WHERE id=:id AND type='animal';";
+//            List<Animal> animals = con.createQuery(sqlFire)
+//                    .throwOnMappingFailure(false)
+//                    .executeAndFetch(Animal.class);
+//            allAnimals.addAll(animals);
+//
+//            String sqlWater = "SELECT * FROM animal WHERE id=:id AND type='endangered-animal';";
+//            List<EndangeredAnimal> endangeredAnimals = con.createQuery(sqlWater)
+//                    .throwOnMappingFailure(false)
+//                    .executeAndFetch(EndangeredAnimal.class);
+//            allAnimals.addAll(endangeredAnimals);
+//        }
+//
+//        return allAnimals;
+//    }
 
-        try(Connection con = DB.sql2o.open()) {
-            String sqlFire = "SELECT * FROM animals WHERE id=:id AND type='animal';";
-            List<Animal> animals = con.createQuery(sqlFire)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetch(Animal.class);
-            allAnimals.addAll(animals);
-
-            String sqlWater = "SELECT * FROM animals WHERE id=:id AND type='endangered-animal';";
-            List<EndangeredAnimal> endangeredAnimals = con.createQuery(sqlWater)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetch(EndangeredAnimal.class);
-            allAnimals.addAll(endangeredAnimals);
-        }
-
-        return allAnimals;
-    }
-
+//        public static List<Sighting> getSightings() {
+//            try (Connection con = DB.sql2o.open()) {
+//                String sql = "SELECT * FROM sighting WHERE animalId=:id";
+//                return con.createQuery(sql)
+//                        .addParameter("id", this.id)
+//                        .executeAndFetch(Sighting.class);
+//            }
+//        }
 }
