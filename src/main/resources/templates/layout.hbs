@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}Wildlife Tracker {{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+</head>
+<body>
+<ul class="nav nav-tabs"  >
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/hero-form">Heros</a></li>
+    <li role="presentation"><a href="/squad-form">Squads</a></li>
+</ul>
+<div class="container">
+    <!--begin main template-->
+    <div class="page-header">
+
+        <h1>WELCOME TO MY HERO SQUAD APP.</h1>
+    </div>
+
+    <div class="col-md-12" id="out">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+<!--end main template-->
+{{#block "footer"}}
+    </body>
+    </html>
+{{/block}}
