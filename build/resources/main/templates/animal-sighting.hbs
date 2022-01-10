@@ -1,0 +1,30 @@
+{{#partial "content"}}
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <h3>Animals viewed</h3>
+              {{#each animals}}
+                  <ul class="animals">
+                      <li>Species: <span id="value"> {{name}} </span></li>
+                      <li>Category: <span id="value">  {{type}}</span></li>
+                      <li>Health: <span id="value">  {{health}}</span></li>
+                      <li>Age: <span id="value">  {{age}}</span></li>
+                      <li>Location Spotted: <span id="value">{{location}}</span><span id="value"></span></li>
+                      <p id="ranger">Submitted by: <span id="value">{{ranger}}</p>
+                  </ul>
+              <div class="detail" >
+                  <a href="/animals-form">Add another animal</a>
+              </div>
+
+
+              {{/each}}
+          </div>
+      </div>
+  </div>
+
+
+
+
+{{/partial}}
+
+{{> layout.hbs}}

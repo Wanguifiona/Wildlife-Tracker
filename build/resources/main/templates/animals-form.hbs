@@ -2,7 +2,7 @@
 {{#partial "content"}}
    <div class="container">
        <h2>Animal sighting form</h2>
-    <form action="" method="post" class="app">
+    <form action="/animal-sighting" method="post" class="app">
         <div class="form">
             <label for ="name"> Animal Name</label>
             <input type="text"  style="margin-bottom: 30px;" name="name" required>
@@ -35,30 +35,21 @@
             </select>
         </div>
         <div class="form">
-            <label for ="age"> Age</label>
-            <select class="age">
-                <option>-Select-</option>
-                <option value="newborn">Newborn</option>
-                <option value="young">Young</option>
-                <option value="adult">Adult</option>
-            </select>
-        </div>
-        <div class="form">
-            <label for ="danger">Danger</label>
-            <select class="danger">
+            <label for ="type">Type</label>
+            <select class="type">
                 <option>-Select-</option>
                 <option value="endangered">Endangered</option>
                 <option value="young">Not Endangered</option>
             </select>
         </div>
         <div class="form">
-            <label for ="weakness"> Hero Weakness </label>
+            <label for ="ranger"> Rangers </label>
             <input type="text"  style="margin-bottom: 30px;" name="weakness" required>
         </div>
 
         <br>
         <br>
-        <button type="submit" class="btn btn-info">Add new Hero </button>
+        <button type="submit" class="btn btn-info">Submit</button>
     </form>
    </div>
 {{/partial}}
