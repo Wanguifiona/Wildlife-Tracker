@@ -50,28 +50,30 @@ public class Sightings {
         }
     }
 
-//    @Override
+    //    @Override
 //    public int hashCode() {
 //        return Objects.hash(getRangerName(),getAnimalId(), getLocation());
 //    }
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (animalId, location, rangerName, lastSeen) VALUES (:animalId, :location, :rangerName,  :now()";
+            String sql = "INSERT INTO sightings (animalId, location, rangerName, lastSeen) VALUES (:animalId, :location, :rangerName, now())";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("animalId", this.animalId)
-                    .addParameter("rangerName", this.rangerName)
                     .addParameter("location", this.location)
+                    .addParameter("rangerName", this.rangerName)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
         }
     }
     public static List<Sightings> all() {
-        String sql = "SELECT * FROM sighting";
+        String sql = "SELECT * FROM sightings";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sightings.class);
         }
     }
+
+
     public static Sightings find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings where id=:id";

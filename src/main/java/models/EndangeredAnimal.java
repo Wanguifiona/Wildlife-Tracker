@@ -5,18 +5,18 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class EndangeredAnimal extends Wildlife implements DatabaseManagement {
-    public static final String ANIMAL_TYPE = "endangered";
+    public static final String ANIMAL_TYPE = "endangered-animal";
 
 
-    public EndangeredAnimal(String name, String health, String type, String age) {
+    public EndangeredAnimal(String name, String health, String age) {
         this.name = name;
         this.health = health;
         this.type = ANIMAL_TYPE;
         this.age = age;
 
-//        if (name.isEmpty() || health.isEmpty() || age.isEmpty()){
-//            throw new IllegalArgumentException("Please enter all input fields.");
-//        }
+        if (name.isEmpty() || health.isEmpty() || age.isEmpty()){
+            throw new IllegalArgumentException("Please enter all input fields.");
+        }
     }
 
 //    public String getName() {
@@ -54,10 +54,10 @@ public class EndangeredAnimal extends Wildlife implements DatabaseManagement {
             EndangeredAnimal newAnimal = (EndangeredAnimal) otherAnimal;
             return this.getAge().equals( newAnimal.getAge()) &&
                     this.getHealth().equals(newAnimal.getHealth()) &&
-                    this.getAge().equals(newAnimal.getType());
+                    this.getAge().equals(newAnimal.getAge());
         }
     }
-//    @Override
+    //    @Override
 //    public int hashCode() {
 //        return Objects.hash(getName(), getId());
 //    }
@@ -78,7 +78,7 @@ public class EndangeredAnimal extends Wildlife implements DatabaseManagement {
 //        }
 //    }
     public static List<EndangeredAnimal> all() {
-        String sql = "SELECT * FROM animals WHERE type = 'endangered';";
+        String sql = "SELECT * FROM animals WHERE type='endangered-animal';";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
@@ -86,7 +86,7 @@ public class EndangeredAnimal extends Wildlife implements DatabaseManagement {
         }
     }
     public static EndangeredAnimal find(int id) {
-        try(Connection con = DB.sql2o.open()) {
+        try (Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals where id=:id";
             EndangeredAnimal animal = con.createQuery(sql)
                     .addParameter("id", id)

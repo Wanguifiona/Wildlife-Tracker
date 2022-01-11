@@ -53,19 +53,19 @@ public class SightingsTest {
 
     }
     @Test
-    public void save_assignsIdToObject() {
+    public void save_assignsIdToSighting() {
         Sightings testSighting = new Sightings("Mike",1, "Zone A");
         testSighting.save();
         Sightings savedSighting = Sightings.all().get(0);
-        assertEquals(testSighting.getAnimalId(), savedSighting.getId());
+        assertEquals(savedSighting.getId(), testSighting.getId());
     }
     @Test
     public void find_returnsSightingWithSameId_secondSighting() {
         Sightings firstSighting = new Sightings("Mike", 1, "Zone A");
         firstSighting.save();
-        Sightings secondSighting = new Sightings("Paul", 2, "Near the river");
+        Sightings secondSighting =  Sightings.all().get(0);
         secondSighting.save();
-        assertEquals(Animals.find(secondSighting.getId()), secondSighting);
+        assertEquals(Sightings.find(secondSighting.getId()), secondSighting);
     }
 
 
