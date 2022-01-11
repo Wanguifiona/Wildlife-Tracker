@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="models.SightingsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-11T13:43:21" hostname="fiona-ThinkPad-T460s" time="0.212">
+<testsuite name="models.SightingsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2022-01-11T14:29:41" hostname="fiona-ThinkPad-T460s" time="0.345">
   <properties/>
-  <testcase name="save_assignsIdToSighting" classname="models.SightingsTest" time="0.212"/>
+  <testcase name="getLocation_sightingInstantiatesWithlocation_true" classname="models.SightingsTest" time="0.033"/>
+  <testcase name="getAnimalId_sightingInstantiatesWithanimalId_true" classname="models.SightingsTest" time="0.016"/>
+  <testcase name="sighting_instantiatesCorrectly_true" classname="models.SightingsTest" time="0.021"/>
+  <testcase name="getRangerName_sightingInstantiatesWithrangerName_true" classname="models.SightingsTest" time="0.009"/>
+  <testcase name="save_successfullyAddsSightingToDatabase_List" classname="models.SightingsTest" time="0.044"/>
+  <testcase name="find_returnsSightingWithSameId_secondSighting" classname="models.SightingsTest" time="0.067"/>
+  <testcase name="equals_returnsTrueIfRangerNameAreSame_true" classname="models.SightingsTest" time="0.016"/>
+  <testcase name="all_returnsAllInstancesOfAnimal_true" classname="models.SightingsTest" time="0.068"/>
+  <testcase name="save_assignsIdToSighting" classname="models.SightingsTest" time="0.033"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
