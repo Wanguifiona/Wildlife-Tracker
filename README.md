@@ -55,11 +55,11 @@ CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 
 * Java - The language used for project.
 
-* Intellij Idea - Intergated development
+* Intellij Idea - Integrated development
 
 * Spark - Framework.
  
-* Postgressql
+* PostgresSql
 
 ## Known bugs
 
