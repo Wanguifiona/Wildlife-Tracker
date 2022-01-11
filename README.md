@@ -27,8 +27,8 @@ Here is a working live demo :
 
 To set up this project:
 
-* Clone the repository by executing the following command in your terminal in the directory of your choice -  git clone https://github.com/Wanguifiona/Hero.git
-* Navigate into the hero-squad directory - cd Hero-Squad
+* Clone the repository by executing the following command in your terminal in the directory of your choice -  git clone https://github.com/Wanguifiona/Wildlife-Tracker
+* Navigate into the hero-squad directory - cd wildlifetracker
 
 * Build project
 
@@ -41,9 +41,13 @@ To set up this project:
 
 #### Create SQL
 psql
+
 CREATE DATABASE wildlife_tracker;
+
 CREATE TABLE animals (id serial PRIMARY KEY, name varchar,health varchar,age varchar, type varchar);
+
 CREATE TABLE sightings (id serial PRIMARY KEY, animalid int,location varchar,rangername varchar,lastseen timestamp);
+
 CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 
 
