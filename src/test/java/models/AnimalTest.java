@@ -46,8 +46,8 @@ public class AnimalTest {
     public void save_assignsIdToObject() {
         Animal testAnimal = new Animal("Jaguar");
         testAnimal.save();
-        Animal savedPerson = Animal.all().get(0);
-        assertEquals(testAnimal.getId(), savedPerson.getId());
+        Animal savedAnimal = Animal.all().get(0);
+        assertEquals(testAnimal.getId(), savedAnimal.getId());
     }
     @Test
     public void find_returnsAnimalWithSameId_secondAnimal() {

@@ -84,7 +84,7 @@ public class Animal implements DatabaseManagement{
 //        return allAnimals;
 //    }
 
-//        public static List<Sighting> getSightings() {
+//        public static List<Sighting> getSighting() {
 //            try (Connection con = DB.sql2o.open()) {
 //                String sql = "SELECT * FROM sighting WHERE animalId=:id";
 //                return con.createQuery(sql)
