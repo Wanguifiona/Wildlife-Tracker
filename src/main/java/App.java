@@ -1,12 +1,10 @@
-import models.Animal;
-import models.Endangered;
-import models.Sighting;
+import models.EndangeredAnimal;
+import models.Sightings;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -27,8 +25,8 @@ public class App {
 
         get("/animal-sighting", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("sighting", Sighting.all());
-            model.put("animal", Endangered.all());
+            model.put("sighting", Sightings.all());
+            model.put("animal", EndangeredAnimal.all());
             return new ModelAndView(model, "animal-sighting.hbs");
         }, new HandlebarsTemplateEngine());
 

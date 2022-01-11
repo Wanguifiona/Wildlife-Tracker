@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="models.EndangeredTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-11T03:29:22" hostname="fiona-ThinkPad-T460s" time="0.195">
-  <properties/>
-  <testcase name="equals_returnsTrueIfRangerNameAreSame_true" classname="models.EndangeredTest" time="0.195"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
