@@ -1,33 +1,33 @@
-{{#partial "styles"}}
-    <link rel="stylesheet" href="/css/animal-sighting.css">
-{{/partial}}
+
 
 {{#partial "content"}}
-  <div class="container">
-      <div class="row">
-          <div class="col">
-              <h3>Animals viewed</h3>
-              {{#each sightings}}
-                  <ul class="animals">
-                      <li>Species: <span id="value"> {{name}} </span></li>
-                      <li>Category: <span id="value">  {{type}}</span></li>
-                      <li>Health: <span id="value">  {{health}}</span></li>
-                      <li>Age: <span id="value">  {{age}}</span></li>
-                      <li>Location Spotted at: <span id="value">{{location}}</span><span id="value"></span></li>
-                      <p id="ranger">Submitted by: <span id="value">{{rangerName}}</p>
-                      <p>Posted on{{lastSeen}}</p>
-                  </ul>
+    <div class="container">
+        <link rel="stylesheet" href="/css/animal-sighting.css">
+        <div class="row">
+            <div class="col">
+                <h3>Animals viewed</h3>
+                {{#each sightings}}
+                    <div class="card-body">
+                    <ul class="animals">
+                        <li>Species: <span id="value"> {{name}} </span></li>
+                        <li>Category: <span id="value">  {{type}}</span></li>
+                        <li>Health: <span id="value">  {{health}}</span></li>
+                        <li>Age: <span id="value">  {{age}}</span></li>
+                        <li>Location Spotted at: <span id="value">{{location}}</span><span id="value"></span></li>
+                        <p id="ranger">Submitted by: <span id="value">{{rangerName}}</p>
+                        <p>Posted on{{lastSeen}}</p>
+                    </ul>
+                    </div>
+                {{/each}}
+                <div class="detail" >
+                    <a href="/animals-form">Add another animal</a>
+                </div>
 
-              {{/each}}
-              <div class="detail" >
-                  <a href="/animals-form">Add another animal</a>
-              </div>
 
 
-
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -35,5 +35,3 @@
 {{/partial}}
 
 {{> layout.hbs}}
-
-
