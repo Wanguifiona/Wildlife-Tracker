@@ -12,8 +12,6 @@ Fiona Wangui.
 
 fiona.maina@student.moringaschool.com
 
-### Demo
-Here is a working live demo : 
 
 ## Technologies used
 * Java.
