@@ -7,16 +7,18 @@
             <div class="col">
                 <h3>Animals viewed</h3>
                 {{#each sightings}}
-                    <div class="card-body">
-                    <ul class="animals">
-                        <li>Species: <span id="value"> {{name}} </span></li>
-                        <li>Category: <span id="value">  {{type}}</span></li>
-                        <li>Health: <span id="value">  {{health}}</span></li>
-                        <li>Age: <span id="value">  {{age}}</span></li>
-                        <li>Location Spotted at: <span id="value">{{location}}</span><span id="value"></span></li>
-                        <p id="ranger">Submitted by: <span id="value">{{rangerName}}</p>
+                    <div class="card-group">
+                    <div class="card">
+
+                        <p>Animal: {{name}}</p>
+                        <p>Category:{{type}}</p>
+                        <p>Health: {{health}}</p>
+                        <p>Age:   {{age}}</p>
+                        <p>Location Spotted at:{{location}}</span></p>
+                        <p >Submitted by:{{rangerName}}</p>
                         <p>Posted on{{lastSeen}}</p>
-                    </ul>
+
+                    </div>
                     </div>
                 {{/each}}
                 <div class="detail" >
