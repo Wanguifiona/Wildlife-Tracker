@@ -7,7 +7,7 @@
       <div class="row">
           <div class="col">
               <h3>Animals viewed</h3>
-              {{#each animals}}
+              {{#each sightings}}
                   <ul class="animals">
                       <li>Species: <span id="value"> {{name}} </span></li>
                       <li>Category: <span id="value">  {{type}}</span></li>
@@ -17,12 +17,14 @@
                       <p id="ranger">Submitted by: <span id="value">{{rangerName}}</p>
                       <p>Posted on{{lastSeen}}</p>
                   </ul>
+
+              {{/each}}
               <div class="detail" >
                   <a href="/animals-form">Add another animal</a>
               </div>
 
 
-              {{/each}}
+
           </div>
       </div>
   </div>
@@ -33,3 +35,5 @@
 {{/partial}}
 
 {{> layout.hbs}}
+
+

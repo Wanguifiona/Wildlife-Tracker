@@ -3,17 +3,16 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <link rel="stylesheet" href="/css/animals-form.css">
     <div class="container">
         <h2>Animal sighting form</h2>
-        <form action="/animal-sighting" method="post" class="app">
+        <form action="/animal-sighting" method="POST" >
             <div class="form">
-                <label for ="name"> Animal Name</label>
+                <label for ="Animal"> Animal Name</label>
                 <input type="text"  class="form-control w-50" id="animal " name="name" required>
             </div>
             <div class="form">
                 <label for ="location"> Location</label>
-                <select id="location" class="form-control w-50">
+                <select id="location" class="form-control w-50" name="location">
                     <option>-Select-</option>
                     <option value="north">Zone A</option>
                     <option value="north-east">NE Quadrant</option>
@@ -22,7 +21,7 @@
             </div>
             <div class="form">
                 <label for ="health"> Health</label>
-                <select id="health" class="form-control w-50">
+                <select id="health" class="form-control w-50" name="health">
                     <option>-Select-</option>
                     <option value="healthy">Healthy</option>
                     <option value="ill">Ill</option>
@@ -31,7 +30,7 @@
             </div>
             <div class="form">
                 <label for ="age"> Age</label>
-                <select id="age" class="form-control w-50">
+                <select id="age" class="form-control w-50" name="age">
                     <option>-Select-</option>
                     <option value="newborn">Newborn</option>
                     <option value="young">Young</option>
@@ -40,7 +39,7 @@
             </div>
             <div class="form">
                 <label for ="type">Type</label>
-                <select id="type" class="form-control w-50">
+                <select id="type" class="form-control w-50" name="type">
                     <option>-Select-</option>
                     <option value="endangered">Endangered</option>
                     <option value="young">Not Endangered</option>

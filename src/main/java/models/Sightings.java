@@ -7,19 +7,26 @@ import java.util.List;
 import java.util.Objects;
 
 public class Sightings {
+
     private int id;
-    private String rangerName;
+
     private int animalId;
+    private String rangerName;
     private String location;
     private Timestamp lastSeen;
 
 
-    public Sightings(String rangerName, int animalId, String location ){
+    public Sightings(int animalId, String rangerName, String location ){
         this.rangerName = rangerName;
         this.animalId = animalId;
         this.location = location;
 
+
+
     }
+
+
+
     public String getRangerName() {
         return rangerName;
     }

@@ -19,9 +19,9 @@ public class Animals extends Wildlife implements DatabaseManagement{
     public Animals(String name){
         this.type = ANIMAL_TYPE;
         this.name = name;
-//        if (name.isEmpty()){
-//            throw new IllegalArgumentException("Please enter the animal's name.");
-//
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("Please enter the animal's name.");
+        }
     }
 //    public String getName() {
 //        return name;

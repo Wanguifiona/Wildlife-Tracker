@@ -6,11 +6,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class AllSightings {
-    private int id;
-    private String name;
-    private String health;
-    private String type;
-    private String age;
+    public int id;
+    public String name;
+    public String health;
+    public String type;
+    public String age;
     private String location;
     private String rangerName;
     private int animalId;
@@ -53,7 +53,7 @@ public class AllSightings {
         return lastSeen;
     }
 
-    public List<AllSightings> getAll() {
+    public static List<AllSightings> getAll() {
         try (Connection con = DB.sql2o.open()) {
             String sql = "SELECT animals.id,name,health,age,location,rangerName,type,lastSeen FROM animals INNER JOIN sightings ON sightings.animalId = animals.id ORDER BY lastSeen";
             return con.createQuery(sql)

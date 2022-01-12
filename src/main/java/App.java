@@ -1,3 +1,5 @@
+import models.AllSightings;
+import models.Animals;
 import models.EndangeredAnimal;
 import models.Sightings;
 import spark.ModelAndView;
@@ -5,6 +7,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -25,30 +28,46 @@ public class App {
 
         get("/animal-sighting", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("sighting", Sightings.all());
+            model.put("sightingS", AllSightings.getAll());
             model.put("animal", EndangeredAnimal.all());
             return new ModelAndView(model, "animal-sighting.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/animal-sighting", (request, response) -> { //URL to make new post on POST route
+        post("/animal-sighting", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            String animal = request.queryParams("animal");
-            String danger = request.queryParams("danger");
+            String animalName = request.queryParams("animal");
+            String rangerName = request.queryParams("ranger");
+            String location = request.queryParams("location");
             String health = request.queryParams("health");
             String age = request.queryParams("age");
-            String location = request.queryParams("location");
-            String ranger = request.queryParams("ranger");
+            String type = request.queryParams("type");
+
+            if(type.equals("animal")){
+                Animals animal = new Animals(animalName);
+                animal.save();
+                Sightings newSighting = new Sightings(animal.getId(),rangerName,location);
+                newSighting.save();
+            } else if(type.equals("endangered")){
+                EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName,health,age);
+                endangeredAnimal.save();
+                Sightings anotherSighting = new Sightings(endangeredAnimal.getId(), rangerName,location);
+                anotherSighting.save();
+            }
 
 
-//            Endangered endangeredAnimal = new Endangered(animal, danger, health, age, location, ranger);
+//            EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName, type, health, age, location, ranger);
 //            endangeredAnimal.save();
-//            Sighting sighting = new Sighting(endangeredAnimal.getId(), location, ranger);
+//            Sightings  sighting = new Sightings (endangeredAnimal.getId(), location, ranger);
 //            sighting.save();
-//
-//            model.put("endangeredAnimal", endangeredAnimal);
-//            model.put("sighting", sighting);
-                return new ModelAndView(model, "animal-sighting.hbs");
-            }, new HandlebarsTemplateEngine());
 
-        }
+
+
+            List<AllSightings> allSightings = AllSightings.getAll();
+            List<EndangeredAnimal> animals = EndangeredAnimal.all();
+            model.put("sightings", allSightings);
+            model.put("animals", animals);
+
+            return new ModelAndView(model, "animal-sighting.hbs");
+        }, new HandlebarsTemplateEngine());
+    }
 }
