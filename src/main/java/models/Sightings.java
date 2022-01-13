@@ -62,7 +62,7 @@ public class Sightings {
 //        return Objects.hash(getRangerName(),getAnimalId(), getLocation());
 
 
-//    }
+    //    }
     public void save() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO sightings (animalId, location, rangerName, lastSeen) VALUES (:animalId, :location, :rangerName, now())";

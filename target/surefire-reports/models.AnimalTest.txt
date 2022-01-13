@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-Test set: models.AnimalTest
+Test set: models.AnimalsTest
 -------------------------------------------------------------------------------
 Tests run: 7, Failures: 0, Errors: 7, Skipped: 0, Time elapsed: 5.508 sec <<< FAILURE!
-save_insertsObjectIntoDatabase_Animal(models.AnimalTest)  Time elapsed: 0.929 sec  <<< ERROR!
+save_insertsObjectIntoDatabase_Animal(models.AnimalsTest)  Time elapsed: 0.929 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -44,7 +44,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-equals_returnsTrueIfNameAreSame_true(models.AnimalTest)  Time elapsed: 0.488 sec  <<< ERROR!
+equals_returnsTrueIfNameAreSame_true(models.AnimalsTest)  Time elapsed: 0.488 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -86,7 +86,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-save_assignsIdToAnimal(models.AnimalTest)  Time elapsed: 1.025 sec  <<< ERROR!
+save_assignsIdToAnimal(models.AnimalsTest)  Time elapsed: 1.025 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -128,7 +128,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-animal_instantiatesCorrectly_true(models.AnimalTest)  Time elapsed: 0.501 sec  <<< ERROR!
+animal_instantiatesCorrectly_true(models.AnimalsTest)  Time elapsed: 0.501 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -170,7 +170,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-getName_animalInstantiatesWithName_Jaguar(models.AnimalTest)  Time elapsed: 0.514 sec  <<< ERROR!
+getName_animalInstantiatesWithName_Jaguar(models.AnimalsTest)  Time elapsed: 0.514 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -212,7 +212,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-find_returnsAnimalWithSameId_secondAnimal(models.AnimalTest)  Time elapsed: 1.01 sec  <<< ERROR!
+find_returnsAnimalWithSameId_secondAnimal(models.AnimalsTest)  Time elapsed: 1.01 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)
@@ -254,7 +254,7 @@ Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for ho
 	at org.sql2o.Connection.createConnection(Connection.java:288)
 	... 26 more
 
-all_returnsAllInstancesOfAnimal_true(models.AnimalTest)  Time elapsed: 1.037 sec  <<< ERROR!
+all_returnsAllInstancesOfAnimal_true(models.AnimalsTest)  Time elapsed: 1.037 sec  <<< ERROR!
 org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.<init>(Connection.java:51)

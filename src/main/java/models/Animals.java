@@ -1,6 +1,5 @@
 
 
-
 package models;
 
 import org.sql2o.Connection;
@@ -21,7 +20,7 @@ public class Animals extends Wildlife implements DatabaseManagement{
         this.name = name;
 
     }
-//    public String getName() {
+    //    public String getName() {
 //        return name;
 //    }
 //    public int getId() {
@@ -36,7 +35,7 @@ public class Animals extends Wildlife implements DatabaseManagement{
             return this.getName().equals(newAnimal.getName());
         }
     }
-//    @Override
+    //    @Override
 //    public int hashCode() {
 //        return Objects.hash(getName());
 //    }

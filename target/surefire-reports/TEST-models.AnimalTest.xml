@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="models.AnimalTest" time="5.504" errors="7" skipped="0">
+<testsuite tests="7" failures="0" name="models.AnimalsTest" time="5.504" errors="7" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.12+7"/>
@@ -61,7 +61,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="models.AnimalTest" name="save_insertsObjectIntoDatabase_Animal" time="0.929">
+  <testcase classname="models.AnimalsTest" name="save_insertsObjectIntoDatabase_Animal" time="0.929">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -119,7 +119,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.save_insertsObjectIntoDatabase_Animal(AnimalTest.java:31)
+	at models.AnimalsTest.save_insertsObjectIntoDatabase_Animal(AnimalTest.java:31)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -168,7 +168,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.save_insertsObjectIntoDatabase_Animal(AnimalTest.java:31)
+	at models.AnimalsTest.save_insertsObjectIntoDatabase_Animal(AnimalTest.java:31)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -283,7 +283,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="equals_returnsTrueIfNameAreSame_true" time="0.488">
+  <testcase classname="models.AnimalsTest" name="equals_returnsTrueIfNameAreSame_true" time="0.488">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -407,7 +407,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="save_assignsIdToAnimal" time="1.025">
+  <testcase classname="models.AnimalsTest" name="save_assignsIdToAnimal" time="1.025">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -465,7 +465,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.save_assignsIdToAnimal(AnimalTest.java:46)
+	at models.AnimalsTest.save_assignsIdToAnimal(AnimalTest.java:46)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -514,7 +514,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.save_assignsIdToAnimal(AnimalTest.java:46)
+	at models.AnimalsTest.save_assignsIdToAnimal(AnimalTest.java:46)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -629,7 +629,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="animal_instantiatesCorrectly_true" time="0.501">
+  <testcase classname="models.AnimalsTest" name="animal_instantiatesCorrectly_true" time="0.501">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -753,7 +753,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="getName_animalInstantiatesWithName_Jaguar" time="0.514">
+  <testcase classname="models.AnimalsTest" name="getName_animalInstantiatesWithName_Jaguar" time="0.514">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -877,7 +877,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="find_returnsAnimalWithSameId_secondAnimal" time="1.01">
+  <testcase classname="models.AnimalsTest" name="find_returnsAnimalWithSameId_secondAnimal" time="1.01">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -935,7 +935,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.find_returnsAnimalWithSameId_secondAnimal(AnimalTest.java:53)
+	at models.AnimalsTest.find_returnsAnimalWithSameId_secondAnimal(AnimalTest.java:53)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -984,7 +984,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.find_returnsAnimalWithSameId_secondAnimal(AnimalTest.java:53)
+	at models.AnimalsTest.find_returnsAnimalWithSameId_secondAnimal(AnimalTest.java:53)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1099,7 +1099,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 
 </system-err>
   </testcase>
-  <testcase classname="models.AnimalTest" name="all_returnsAllInstancesOfAnimal_true" time="1.037">
+  <testcase classname="models.AnimalsTest" name="all_returnsAllInstancesOfAnimal_true" time="1.037">
     <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
 	at org.sql2o.Connection.createConnection(Connection.java:291)
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
@@ -1157,7 +1157,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.all_returnsAllInstancesOfAnimal_true(AnimalTest.java:37)
+	at models.AnimalsTest.all_returnsAllInstancesOfAnimal_true(AnimalTest.java:37)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1206,7 +1206,7 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
 	at org.sql2o.Sql2o.open(Sql2o.java:225)
 	at models.Wildlife.save(Wildlife.java:35)
-	at models.AnimalTest.all_returnsAllInstancesOfAnimal_true(AnimalTest.java:37)
+	at models.AnimalsTest.all_returnsAllInstancesOfAnimal_true(AnimalTest.java:37)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
