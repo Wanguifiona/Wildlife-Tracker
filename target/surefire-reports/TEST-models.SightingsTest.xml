@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="models.SightingsTest" time="6.505" errors="9" skipped="0">
+<testsuite tests="9" failures="0" name="models.SightingsTest" time="132.088" errors="9" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.12+7"/>
@@ -61,12 +61,12 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="models.SightingsTest" name="getLocation_sightingInstantiatesWithlocation_true" time="0.333">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="getLocation_sightingInstantiatesWithlocation_true" time="8.068">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -90,35 +90,25 @@
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:04 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -142,55 +132,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:04 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="getAnimalId_sightingInstantiatesWithanimalId_true" time="0.511">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="getAnimalId_sightingInstantiatesWithanimalId_true" time="5.606">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -214,35 +163,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:04 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -266,55 +205,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:04 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="sighting_instantiatesCorrectly_true" time="0.514">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="sighting_instantiatesCorrectly_true" time="6.894">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -338,35 +236,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:05 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -390,55 +278,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:05 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="getRangerName_sightingInstantiatesWithrangerName_true" time="0.498">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="getRangerName_sightingInstantiatesWithrangerName_true" time="9.796">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -462,35 +309,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:05 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -514,55 +351,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:05 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="save_successfullyAddsSightingToDatabase_List" time="1.011">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="save_successfullyAddsSightingToDatabase_List" time="18.077">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -586,35 +382,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:06 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.Sightings.save(Sightings.java:74)
 	at models.SightingsTest.save_successfullyAddsSightingToDatabase_List(SightingsTest.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -647,72 +433,13 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:06 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
-	at models.SightingsTest.save_successfullyAddsSightingToDatabase_List(SightingsTest.java:42)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:06 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -736,55 +463,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:06 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="find_returnsSightingWithSameId_secondSighting" time="1.026">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="find_returnsSightingWithSameId_secondSighting" time="44.229">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -808,35 +494,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:07 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.Sightings.save(Sightings.java:74)
 	at models.SightingsTest.find_returnsSightingWithSameId_secondSighting(SightingsTest.java:65)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -869,72 +545,13 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:07 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
-	at models.SightingsTest.find_returnsSightingWithSameId_secondSighting(SightingsTest.java:65)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:07 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -958,55 +575,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:07 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="equals_returnsTrueIfRangerNameAreSame_true" time="0.508">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="equals_returnsTrueIfRangerNameAreSame_true" time="10.494">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1030,35 +606,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:08 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1082,55 +648,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:08 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="all_returnsAllInstancesOfAnimal_true" time="1.047">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="all_returnsAllInstancesOfAnimal_true" time="18.045">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1154,35 +679,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:08 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.Sightings.save(Sightings.java:74)
 	at models.SightingsTest.all_returnsAllInstancesOfAnimal_true(SightingsTest.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -1215,72 +730,13 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:08 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
-	at models.SightingsTest.all_returnsAllInstancesOfAnimal_true(SightingsTest.java:48)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:09 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1304,55 +760,14 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:09 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
-  <testcase classname="models.SightingsTest" name="save_assignsIdToSighting" time="1.057">
-    <error message="Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+  <testcase classname="models.SightingsTest" name="save_assignsIdToSighting" time="10.879">
+    <error message="Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13" type="org.sql2o.Sql2oException">org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1376,35 +791,25 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation &quot;animals&quot; does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 </error>
-    <system-err>Jan 13, 2022 1:14:09 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
+    <system-err>[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.Sightings.save(Sightings.java:74)
 	at models.SightingsTest.save_assignsIdToSighting(SightingsTest.java:58)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -1437,72 +842,13 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:09 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.Sighting.save(Sightings.java:67)
-	at models.SightingsTest.save_assignsIdToSighting(SightingsTest.java:58)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:10 PM org.postgresql.core.v3.ConnectionFactoryImpl log
-WARNING: SQLException occurred while connecting to ec2-54-158-232-223.compute-1.amazonaws.com:5432
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+[main] WARN org.sql2o.Connection - Could not roll back transaction. message: {}
+org.postgresql.util.PSQLException: Cannot rollback when autoCommit is enabled.
+	at org.postgresql.jdbc.PgConnection.rollback(PgConnection.java:777)
+	at org.sql2o.Connection.rollback(Connection.java:115)
+	at org.sql2o.Connection.onException(Connection.java:56)
+	at org.sql2o.Query.executeUpdate(Query.java:526)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -1526,47 +872,6 @@ org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;10
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
-Jan 13, 2022 1:14:10 PM org.postgresql.Driver connect
-SEVERE: Connection error: 
-org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host &quot;105.163.1.180&quot;, user &quot;zhrozwhrlajtdf&quot;, database &quot;d74l98ruq4hcnn&quot;, SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	at org.sql2o.Connection.&lt;init&gt;(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-
 </system-err>
   </testcase>
 </testsuite>

@@ -1,13 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: models.SightingsTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 6.522 sec <<< FAILURE!
-getLocation_sightingInstantiatesWithlocation_true(models.SightingsTest)  Time elapsed: 0.333 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 132.093 sec <<< FAILURE!
+getLocation_sightingInstantiatesWithlocation_true(models.SightingsTest)  Time elapsed: 8.068 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -31,25 +30,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-getAnimalId_sightingInstantiatesWithanimalId_true(models.SightingsTest)  Time elapsed: 0.511 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+getAnimalId_sightingInstantiatesWithanimalId_true(models.SightingsTest)  Time elapsed: 5.606 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -73,25 +70,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-sighting_instantiatesCorrectly_true(models.SightingsTest)  Time elapsed: 0.514 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+sighting_instantiatesCorrectly_true(models.SightingsTest)  Time elapsed: 6.894 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -115,25 +110,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-getRangerName_sightingInstantiatesWithrangerName_true(models.SightingsTest)  Time elapsed: 0.498 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+getRangerName_sightingInstantiatesWithrangerName_true(models.SightingsTest)  Time elapsed: 9.796 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -157,25 +150,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-save_successfullyAddsSightingToDatabase_List(models.SightingsTest)  Time elapsed: 1.011 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+save_successfullyAddsSightingToDatabase_List(models.SightingsTest)  Time elapsed: 18.077 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -199,25 +190,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-find_returnsSightingWithSameId_secondSighting(models.SightingsTest)  Time elapsed: 1.026 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+find_returnsSightingWithSameId_secondSighting(models.SightingsTest)  Time elapsed: 44.229 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -241,25 +230,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-equals_returnsTrueIfRangerNameAreSame_true(models.SightingsTest)  Time elapsed: 0.508 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+equals_returnsTrueIfRangerNameAreSame_true(models.SightingsTest)  Time elapsed: 10.494 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -283,25 +270,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-all_returnsAllInstancesOfAnimal_true(models.SightingsTest)  Time elapsed: 1.047 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+all_returnsAllInstancesOfAnimal_true(models.SightingsTest)  Time elapsed: 18.045 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -325,25 +310,23 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
-save_assignsIdToSighting(models.SightingsTest)  Time elapsed: 1.057 sec  <<< ERROR!
-org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.sql2o.Connection.createConnection(Connection.java:291)
-	at org.sql2o.Connection.<init>(Connection.java:51)
-	at org.sql2o.Sql2o.open(Sql2o.java:225)
-	at models.DatabaseRule.after(DatabaseRule.java:17)
+save_assignsIdToSighting(models.SightingsTest)  Time elapsed: 10.879 sec  <<< ERROR!
+org.sql2o.Sql2oException: Error in executeUpdate, ERROR: relation "animals" does not exist
+  Position: 13
+	at org.sql2o.Query.executeUpdate(Query.java:527)
+	at models.DatabaseRule.after(DatabaseRule.java:21)
 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:50)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
@@ -367,16 +350,15 @@ org.sql2o.Sql2oException: Could not acquire a connection from DataSource - FATAL
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "105.163.1.180", user "zhrozwhrlajtdf", database "d74l98ruq4hcnn", SSL off
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:473)
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:205)
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
-	at org.postgresql.Driver.makeConnection(Driver.java:452)
-	at org.postgresql.Driver.connect(Driver.java:254)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
-	at org.sql2o.GenericDatasource.getConnection(GenericDatasource.java:62)
-	at org.sql2o.Connection.createConnection(Connection.java:288)
-	... 26 more
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "animals" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2433)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2178)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:306)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:155)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:132)
+	at org.sql2o.Query.executeUpdate(Query.java:521)
+	... 24 more
 
