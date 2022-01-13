@@ -29,6 +29,8 @@ public abstract class Wildlife {
         return type;
     }
 
+
+
     public void save(){
         try(Connection connect = DB.sql2o.open()) {
             String sql = "INSERT INTO animals (name, health, age, type) VALUES (:name, :health, :age, :type)";

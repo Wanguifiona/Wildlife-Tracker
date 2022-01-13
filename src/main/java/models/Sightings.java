@@ -60,6 +60,8 @@ public class Sightings {
     //    @Override
 //    public int hashCode() {
 //        return Objects.hash(getRangerName(),getAnimalId(), getLocation());
+
+
 //    }
     public void save() {
         try(Connection con = DB.sql2o.open()) {
