@@ -8,8 +8,10 @@ public class DatabaseRule extends ExternalResource {
 
     @Override
     protected void before() {
+        DB.sql2o = new Sql2o("jdbc:postgresql://ec2-54-158-232-223.compute-1.amazonaws.com/d74l98ruq4hcnn?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory", "zhrozwhrlajtdf", "a69b2dd3de2c30fb05fce08b5ac98bbef3bc218f66740511b071dea25960aeae");
+
 //
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "fiona", "Man");
+//        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "fiona", "Man");
     }
 
     @Override
