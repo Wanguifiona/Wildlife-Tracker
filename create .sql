@@ -23,8 +23,8 @@ CREATE TABLE sightings (
 CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 
 
---heroku pg:psql --app wildlifetracker1
---\c database no
---\dt
---CREATE TABLE animals(------)
---CREATE TABLE sightings(-----)
+heroku pg:psql --app wildlifetracker1
+\c database no
+\dt
+CREATE TABLE animals(------)
+CREATE TABLE sightings(-----)
