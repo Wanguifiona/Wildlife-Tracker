@@ -14,12 +14,12 @@ fiona.maina@student.moringaschool.com
 
 
 ## Technologies used
-* Java.
+* Java v9.
 * Spark.
 * Gradle.
 * Maven.
 * Bootstrap.
-* JUnit.
+* JUnit v4.12.
 
 ##### Setup instructions
 
@@ -35,7 +35,34 @@ To set up this project:
 
 * Navigate into the src/main/java/App.java and click run in intellij.
 
-* Go to your browser and type localhost:4567
+ * Rebuild the Project Using Intellij IDEA 
+ 
+  * Open terminal command line then navigate to the root folder of the application.
+   
+   * Run  gradle run command
+   
+  * Go to your browser and type localhost:4567
+  
+  ### Development
+  
+  Want to contribute? Great!
+  
+  To fix a bug or enhance an existing module, follow these steps:
+  
+  * Fork the repo
+  
+  * Create a new branch (`git checkout -b improve-feature`)
+  
+  * Make the appropriate changes in the files
+  
+  * Add changes to reflect the changes made
+  
+  * Commit your changes (`git commit -am 'Improve feature'`)
+  
+  * Push to the branch (`git push origin improve-feature`)
+  
+  * Create a Pull Request 
+
 
 
 ##### Build with
