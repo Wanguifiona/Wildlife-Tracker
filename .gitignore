@@ -49,3 +49,5 @@ settings.gradle
 ############
 .idea
 .idea/
+.gitignore
+target
